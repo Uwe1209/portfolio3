@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: render-credit-app
+    runtime: node
+    plan: free
+    autoDeploy: true
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: APP_TITLE
+        value: Render Notes Board
+      - key: APP_MESSAGE
+        value: This app is deployed from Git and uses Render environment variables.
+      - key: DEFAULT_AUTHOR
+        value: Deployment Student
+      - key: SEED_NOTES
+        value: Connect repo to Render|Push changes to trigger auto deploy|Suspend service after demo
