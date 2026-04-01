@@ -1,6 +1,12 @@
+databases:
+  - name: render-credit-db
+    databaseName: render_credit_db
+    plan: free
+    user: render_credit_db_user
+
 services:
   - type: web
-    name: render-credit-app
+    name: render-hd-app
     runtime: node
     plan: free
     autoDeploy: true
@@ -10,8 +16,12 @@ services:
       - key: APP_TITLE
         value: Render Notes Board
       - key: APP_MESSAGE
-        value: This app is deployed from Git and uses Render environment variables.
+        value: This app is deployed from Git, auto-deploys on push, and stores notes in PostgreSQL.
       - key: DEFAULT_AUTHOR
         value: Deployment Student
       - key: SEED_NOTES
-        value: Connect repo to Render|Push changes to trigger auto deploy|Suspend service after demo
+        value: Connect repo to Render|Push changes to trigger auto deploy|Test database read and write
+      - key: DATABASE_URL
+        fromDatabase:
+          name: render-credit-db
+          property: connectionString
